@@ -1,0 +1,134 @@
+.title_header {
+  font-size: large;
+  color: brown;
+}
+
+.body {
+  margin: 50px;
+}
+.header_Image_Card {
+  width: 112%;
+  height: 200px;
+  margin-block: initial;
+  display: grid;
+}
+
+.header_Image {
+  width: 100%;
+  height: 478px;
+  object-fit: fill;
+  object-position: center;
+}
+
+.Soudi {
+  text-align: center;
+  color: aliceblue;
+  font-size: xx-large;
+}
+
+.Destenation {
+  text-align: unset;
+  color: aliceblue;
+  font-size: xx-large;
+  padding: 67px 20px 16px 40px;
+}
+
+.Image_Menu ul li {
+  display: inline-block;
+}
+
+.Image_Menu ul li p {
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  text-align: left;
+  font-weight: bold;
+}
+
+.Image_Menu ul li a img {
+  width: 250px;
+  height: 200px;
+  margin-right: 20px;
+  text-align: center;
+  border-radius: 20px;
+  border: rgb(0, 0, 0);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.Cities {
+  text-align: left;
+  color: rgb(0, 0, 0);
+  font-size: x-large;
+  padding: 20px;
+}
+
+.Jeddah_Image_Card {
+  width: auto;
+  height: auto;
+}
+a {
+  text-decoration: none;
+  outline: none;
+}
+.footer {
+  width: 100%;
+  height: auto;
+  margin: auto;
+  background: rgb(175, 27, 153);
+  padding: 20px 0px;
+}
+
+.social {
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+.social ul {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+.social ul li {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  margin: 0px 10px;
+  border-radius: 100%;
+  background: rgb(255, 255, 255);
+}
+
+.social ul li a {
+  color: rgb(175, 27, 153);
+  font-size: 25px;
+  height: 50px;
+}
+
+.social ul li a i {
+  line-height: 50px;
+  line-height-step: 50px;
+  display: inline-block;
+}
+
+.menu_footer {
+  width: 112%;
+  height: auto;
+  margin: auto;
+}
+.menu_footer ul {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+.menu_footer ul il {
+  display: inline-block;
+  margin: 0px 15;
+}
+
+.menu_footer ul li a {
+  font-family: arial;
+  font-size: 18px;
+  color: aliceblue;
+  text-transform: uppercase;
+}
