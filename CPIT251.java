@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package cpit251;
 
 import java.util.ArrayList;
@@ -14,16 +10,21 @@ public class CPIT251 {
 
     public static void main(String[] args) {
 
-        ArrayList<Account> accounts = new ArrayList<>();
-
-        Account user1_ = new Account("Sarah", "Naghi", "Sarh@hotmail.com", "0569211631", "Sarah", "Ss@12345678", 19);
-        Account user2_ = new Account("Rawan", "Samer", "Rawan@hotmail.com", "0569211631", "RawanS", "Rr@12345678", 19);
-        Account user3_ = new Account("Ragad", "Fahad", "Ragad@hotmail.com", "0569211631", "RagadFt", "Rr@12345678", 19);
-        Account user4_ = new Account("Leen", "Saleh", "Leen@hotmail.com", "0569211631", "LeenS", "Ll@12345678", 19);
-        accounts.add(user1_);
-        accounts.add(user2_);
-        accounts.add(user3_);
-        accounts.add(user4_);
+        // Create ArrayList from Account class and name it accounts
+        ArrayList<Account> accounts = new ArrayList<>(); 
+        // Users 
+        Account user_1 = new Account("Sarah", "Naghi", "Sarh@hotmail.com", "0500000001", "Sarah", "Ss@12345678", 23);
+        Account user_2 = new Account("Rawan", "Samer", "Rawan@hotmail.com", "0500000002", "RawanS", "Rr@12345678", 22);
+        Account user_3 = new Account("Ragad", "Fahad", "Ragad@hotmail.com", "0500000003", "RagadFt", "Rr@12345678", 22);
+        Account user_4 = new Account("Leen", "Saleh", "Leen@hotmail.com", "0500000004", "LeenS", "Ll@12345678", 23);
+        // Inserting users into the accounts ArrayList
+        accounts.add(user_1);
+        accounts.add(user_2);
+        accounts.add(user_3);
+        accounts.add(user_4);
+        
+        
+        //-------------------------------------------Main menu loop------------------------------------------//
 
         while (true) {
             System.out.println("---------------------------------");
@@ -34,21 +35,25 @@ public class CPIT251 {
             System.out.println("2- Register");
             Scanner input = new Scanner(System.in);
             System.out.print("Enter 1 or 2 : ");
-            int number = input.nextInt();
+            String number = input.next();
 
-            if (number == 1) {
+            
+                //-------------------------------------LogIn---------------------------------//
+            if (number.equals("1")) {
                 System.out.println("Log in page");
                 System.out.print("Enter username: ");
                 String username = input.next();
+                // Search for the entered username in the ArrayList 
                 int usernemeExists = SearchByusername(accounts, username);
-
                 while (true) {
 
+                    // Username not found in the ArrayList
                     if (usernemeExists == -1) {
                         System.out.println("This username dose not exists");
                         System.out.print("Please try again: ");
                         username = input.next();
                         usernemeExists = SearchByusername(accounts, username);
+                    // Username found in the ArrayList    
                     } else {
                         break;
                     }
@@ -57,166 +62,213 @@ public class CPIT251 {
                 System.out.print("Enter password: ");
                 String password = input.next();
                 while (true) {
+                    // According to username, we'll use the index in order to validate the entered password 
+                    // and match it with the one in the ArrayList
+                    // Password did not match
                     if (!accounts.get(usernemeExists).getPassword().equals(password)) {
                         System.out.println("Sorry! Wrong password, please try again");
                         password = input.next();
                     }
+                    // Password matched
                     break;
                 }
 
+                // VIEW this page when user Logged In
                 System.out.println("      You’ve logged in successfully! ");
                 System.out.println("      ————-to home page————");
                 System.out.println("     - To view account information enter(1)");
                 System.out.println("     - To view our menu enter(2)");
                 System.out.println("     - To Exit (3)");
-
                 System.out.println("");
                 System.out.println("");
-                int numberCh = input.nextInt();
-                if (numberCh == 1) {
+                int choice = input.nextInt();
+                // To display user's account information
+                if (choice == 1) {
                     accounts.get(usernemeExists).AccountInformation();
                 }
-                else if(numberCh == 2) continue;
-                else if(numberCh == 3) System.exit(0);
+                // To display the menu
+                else if(choice == 2) continue;
+                // To display exit page and terminate the system
+                else if(choice == 3) System.exit(0);
 
-            } else if (number == 2) {
+                //------------------------------------Registeration----------------------------------//
+            } else if (number.equals("2")) {
 
                 System.out.println("-------- Registeration page ------- ");
 
-                // 1-Fisrt name 
+                
+                //**********[   1-Fisrt Name   ]**********// 
                 System.out.print("Enter first name: ");
                 String fname = input.next();
-                Boolean ch = isValidFLname(fname);
+                // To validate the entered First Name
+                Boolean validateName = isValidFLname(fname);
                 while (true) {
-                    if (ch == false) {
+                // First Name not valid
+                    if (validateName == false) {
                         System.out.println("Try again the first name must be letters only!");
                         System.out.print("Pleas enter first name: ");
                         fname = input.next();
-                        ch = isValidFLname(fname);
+                        validateName = isValidFLname(fname);
+                // First Name valid
                     } else {
                         break;
                     }
                 }
-                // 2-Fisrt name
+                
+                //**********[   2-Last Name   ]**********//
                 System.out.print("Enter last name: ");
                 String lname = input.next();
-                ch = isValidFLname(lname);
+                // To validate the entered Last Name
+                validateName = isValidFLname(lname);
                 while (true) {
-                    if (ch == false) {
+                // Last Name not valid
+                    if (validateName == false) {
                         System.out.println("Try again the last name must be letters only!");
                         System.out.print("Pleas enter last name: ");
                         lname = input.next();
-                        ch = isValidFLname(lname);
+                        validateName = isValidFLname(lname);
+                // Last Name valid
                     } else {
                         break;
                     }
                 }
 
-                // 3-Email
-                System.out.print("Enter email: ");
+                //**********[   3-Email   ]**********//
+                System.out.print("Enter email: "); 
                 String Email = input.next();
+                // To validate the entered Email
                 boolean isValidEmail = isValidEmail(accounts, Email);
                 while (true) {
+                // Email not valid
                     if (isValidEmail == false) {
                         System.out.println("Try again!");
                         System.out.print("Pleas enter email: ");
                         Email = input.next();
                         isValidEmail = isValidEmail(accounts, Email);
+                // Email valid
                     } else {
                         break;
                     }
                 }
 
-                // 4-Phone Number
+                //**********[   4-Phone Number   ]**********//
                 System.out.print("Enter phone number: ");
                 String Phone = input.next();
+                // To validate the entered Phone Number
                 boolean isValidphonenumber = isValidphonenumber(Phone);
                 while (true) {
+                // Phone Number not valid
                     if (isValidphonenumber == false) {
                         System.out.println("Try again! *phone number must be 10 digits and start withe 055 054 050 056 053 059");
                         System.out.print("Pleas enter phone number: ");
                         Phone = input.next();
                         isValidphonenumber = isValidphonenumber(Phone);
+                // Phone Number valid        
                     } else {
                         break;
                     }
                 }
 
-                //5- username
+                //**********[   5-Username   ]**********//
                 System.out.print("Enter username : ");
                 String username = input.next();
+                // To validate the entered Username
                 boolean isValidUsername = isValidUsername(accounts, username);
                 while (true) {
+                // Username not valid    
                     if (isValidUsername == false) {
                         System.out.print("Pleas enter username: ");
                         username = input.next();
                         isValidUsername = isValidUsername(accounts, username);
+                // Username not valid          
                     } else {
                         break;
                     }
                 }
 
-                //6- password
+                //**********[   6-Password   ]**********//
                 System.out.print("Enter password : ");
                 String password = input.next();
+                // To validate the entered Password
                 boolean isValidPassword = isValidPassword(password);
                 while (true) {
+                // Password not valid
                     if (isValidPassword == false) {
                         System.out.print("Pleas enter password: ");
                         password = input.next();
                         isValidPassword = isValidPassword(password);
+                // Password not valid
                     } else {
                         break;
                     }
                 }
 
-                //7- age
+                //**********[   7-Age   ]**********//
                 System.out.print("Enter age : ");
                 int age = input.nextInt();
+                // To validate the entered Age
                 boolean isValidAge = isValidAge(age);
 
-                // --------------------------------------------------------------------
-                Account user = new Account(fname, lname, Email, Phone, username, password, age);
+                ////////////////////////////////////////////////////////////////////////////////////////////////
+                // Create user's account
+                Account user = new Account(fname, lname, Email, Phone, username, password, age); 
+                // Inserting users into the accounts ArrayList
                 accounts.add(user);
+                // View menu
                 System.out.println("");
                 System.out.println("");
                 System.out.println("-----------------------------------------------------");
                 System.out.println("      Account has been successfully created!");
-                System.out.println("      ———<Welcome to Saudi Guide>———");
+                System.out.println("      *—––––——<< Welcome to Saudi Guide >>—––––——*");
                 System.out.println("      - To view account information enter(1)");
                 System.out.println("      - To view our menu enter(2)");
                 System.out.println("-----------------------------------------------------");
                 System.out.println("");
                 System.out.println("");
-                int numberCh = input.nextInt();
-                if (numberCh == 1) {
+                int choice = input.nextInt();
+                // To display account information
+                if (choice == 1) {
                     user.AccountInformation();
                 }
-                System.out.println("Go to home page enter(1)");
-                System.out.println("to Exit enter(2)");
+                System.out.println("      - To home page enter(1)");
+                System.out.println("      - To Exit enter(2)");
                 System.out.print("--->");
-                numberCh = input.nextInt();
-                if (numberCh == 1) continue;
-                else if(numberCh ==2) System.exit(0);
+                choice = input.nextInt();
+                if (choice == 1) continue;
+                // To display exit page and terminate the system
+                else if(choice ==3) 
+                System.out.println("**************!!! Thank you for using Saudi Guide !!!**************");
+                System.out.println("           We hope you found the perfect spot you wanted <3 ");
+                System.out.println("                                SEE YA");
+                    System.exit(0);
 
+        //-----------------------------------------------Wrong Choice------------------------------------------// 
             } else {
                 System.out.print("wrong input, please enter 1 or 2: ");
-                number = input.nextInt();
+                number = input.next();
             }
 
         }
     }
 
-    // Method 1- Check First and last name
-    public static boolean isValidFLname(String str) {
-        return ((!str.equals("")) && (str != null) && (str.matches("^[a-zA-Z]*$")));
+//    ___________________________________________________
+     //                                                //
+    //      Method 1- Check First and last name       //
+   //________________________________________________//
+    
+    public static boolean isValidFLname(String name) {
+        return ((!name.equals("")) && (name != null) && (name.matches("^[a-zA-Z]*$")));
     }
-    // Method 2- Check Email
+    
 
+//    ___________________________________________________
+     //                                                //
+    //               Method 2- Check Email            //
+   //________________________________________________//
     public static boolean isValidEmail(ArrayList<Account> A, String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-        java.util.regex.Matcher m = p.matcher(email);
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(ePattern);
+        java.util.regex.Matcher matcher = pattern.matcher(email);
 
         boolean SearchByEmail = SearchByEmail(A, email);
         if (SearchByEmail) {
@@ -225,28 +277,34 @@ public class CPIT251 {
             return false;
         }
 
-        return m.matches();
+        return matcher.matches();
     }
 
-    // Method 3- Check phone number
+    
+//    ___________________________________________________
+     //                                                //
+    //          Method 3- Check phone number          //
+   //________________________________________________//    
     public static boolean isValidphonenumber(String isValidphonenumber) {
-        Pattern p = Pattern.compile("(05)?[0,5,3,9,4,6][0-9]{7}");
-        java.util.regex.Matcher m = p.matcher(isValidphonenumber);
-        return m.matches();
+        Pattern pattern = Pattern.compile("(05)?[0,5,3,9,4,6][0-9]{7}");
+        java.util.regex.Matcher matcher = pattern.matcher(isValidphonenumber);
+        return matcher.matches();
     }
 
-    // Method 4- Check username
-    public static boolean isValidUsername(ArrayList<Account> A, String name) {
-
-        // check valid username.
+    
+//    ___________________________________________________
+     //                                                //
+    //          Method 4- Check username              //
+   //________________________________________________//    
+    public static boolean isValidUsername(ArrayList<Account> A, String name) {  
         String regex = "^[A-Za-z]\\w{5,29}$";
-        Pattern p = Pattern.compile(regex);
+        Pattern pattern = Pattern.compile(regex);
 
         if (name == null) {
             return false;
         }
         // to find matching between given username and regular expression.
-        Matcher m = p.matcher(name);
+        Matcher matcher = pattern.matcher(name);
 
         int SearchByusername = SearchByusername(A, name);
         if (SearchByusername != -1) {
@@ -261,10 +319,14 @@ public class CPIT251 {
 
         // Return if the username
         // matched the ReGex
-        return m.matches();
+        return matcher.matches();
     }
 
-    // Method 5- password
+    
+//    ___________________________________________________
+     //                                                //
+    //              Method 5- password                //
+   //________________________________________________//  
     public static boolean isValidPassword(String password) {
         boolean isValid = true;
         if (password.length() > 15 || password.length() < 8) {
@@ -294,7 +356,11 @@ public class CPIT251 {
         return isValid;
     }
 
-    // Method 6- check age
+    
+//    ___________________________________________________
+     //                                                //
+    //              Method 6- check age               //
+   //________________________________________________//  
     public static boolean isValidAge(int age) {
         boolean valid = true;
         if (age >= 12) {
@@ -307,7 +373,11 @@ public class CPIT251 {
         return valid;
     }
 
-// method 7- Search in array list 
+ 
+//    ___________________________________________________
+     //                                                //
+    //   Method 7- Search <Username> in array list    //
+   //________________________________________________//  
     public static int SearchByusername(ArrayList<Account> A, String username) {
         int exists = -1;
         int searchListLength = A.size();
@@ -321,7 +391,11 @@ public class CPIT251 {
         return exists;
     }
 
-// method 8- Search in array list 
+ 
+//    ___________________________________________________
+     //                                                //
+    //    Method 8- Search <Email> in array list      //
+   //________________________________________________//  
     public static boolean SearchByEmail(ArrayList<Account> A, String Email) {
         boolean exists = true;
         int searchListLength = A.size();
