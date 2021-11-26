@@ -1,0 +1,95 @@
+.Category a {
+  width: 100%;
+  font-size: large;
+  line-height: 100px;
+  color: #ccc;
+  padding: 0px 2px;
+  margin-left: 10px;
+}
+
+.grid {
+  margin: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  align-items: center;
+}
+
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  text-align: center;
+}
+
+.grid > article:hover {
+  transition: transform 0.1s ease-out;
+  transform: translateY(10px);
+}
+.grid > article img {
+  width: 200px;
+  height: 200px;
+}
+
+.text {
+  padding: 0 20px 20px;
+}
+
+.text > h3 {
+  text-transform: uppercase;
+}
+
+.text > a button {
+  background: linear-gradient(
+    to right,
+    rgb(175, 27, 153),
+    rgb(175, 27, 153),
+    rgb(175, 27, 153)
+  );
+  padding: 15px 32px;
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  max-width: 100%;
+  font-weight: 600;
+  width: 50%;
+
+  text-transform: uppercase;
+}
+
+.text > a button Btm2 {
+  background: linear-gradient(
+    to right,
+    rgb(13, 213, 133),
+    rgb(13, 213, 133),
+    rgb(13, 213, 133)
+  );
+  padding: 15px 32px;
+  border-radius: 50px;
+  color: rgb(255, 255, 255);
+  padding: 10px;
+  max-width: 100%;
+  font-weight: 600;
+  width: 50%;
+
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1rf);
+  }
+}
+@media (max-width: 500px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.grid > article {
+  text-align: center;
+}
+
+.container grid img {
+  display: inline-block;
+}
